@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <meta http-equiv='X-UA-Compatible' content='ie=edge' />
+  <title>User Reviews</title>
+</head>
+<body>
+  <nav><div><a href='{% url "trips:index" %}'>Home</a>
+    <a href='{% url "trips:add" %}'>Add Trip and Description</a>
+    <a href='{% url "login:logout" %}'>Logout</a><div></nav>
+  <h3>User Alias: {{user.first_name}}</h3>
+  <h4>Name: {{user.first_name}} {{user.last_name}}</h4>
+  <h4>Email: {{user.email}}</h4>
+  <h4>Total Reviews: {{reviews.count}}</h4>
+
+  <h3>Posted Reviews on the following trips:</h3>
+  {% for review in reviews %}
+  <p><a href='{% url "trips:show" travel.book.id %}'>{{review.trip.title}}</a></p>
+  {% endfor %}
+</body>
+</html>

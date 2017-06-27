@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <meta http-equiv='X-UA-Compatible' content='ie=edge' />
+  <title>Add Trip and Description</title>
+</head>
+<body>
+  <nav><div><a href='{% url "trips:index" %}'>Home</a>
+    <a href='{% url "login:logout" %}'>Logout</a><div></nav>
+  <h1>Welcome to your trip schedule!</h1>
+  <form action='{% url "trips:create" %}' method='post'>
+    {% csrf_token %}
+    trip:<input type='text' name='title'/><br />
+    destination:<br />
+    Choose from the list:
+    <select name='tripselect'>
+      {% for place in places %}
+      <option value='{{trip.id}}'>{{place.name}}</option>
+      {% endfor %}
+    </select>
+    Or add a new destination: <input type='text' name='newdestination'/><br />
+    context: <textarea name='review' cols='30' rows='10'></textarea>
+    Rating: <input type='number' name='rating' min='1' max='5'/> stars.
+    <input type='submit' value='Add trip and description'/>
+  </form>
+</body>
+</html>
